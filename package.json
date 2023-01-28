@@ -1,0 +1,8 @@
+{
+  "name": "LoggingSerive",
+  "version": "1.0.0",
+  "description": "Logservice chạy nodejs/express cho web Booking Ticket",
+  "main": "logserver.js",
+  "author": "Bạch Đăng Tuấn",
+  "license": "MIT"
+}
