@@ -4,5 +4,9 @@
   "description": "Logservice chạy nodejs/express cho web Booking Ticket",
   "main": "logserver.js",
   "author": "Bạch Đăng Tuấn",
-  "license": "MIT"
+  "scripts": {},
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
