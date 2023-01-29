@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require("path");
 const app = express();
+const {rootRouter} = require("./router");
 
 
 const PORT = 5001
+app.use("/api/v1", rootRouter)
 
-// Add headers before the routes are defined
+///////////// Add headers before the routes are defined
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,15 +21,16 @@ app.use(function (req, res, next) {
     next();
 });
 
-// cài đặt kiểu json ép kiểu json
+///////////// cài đặt kiểu json ép kiểu json
 app.use(express.json());
 
-// cài đặt static file
+///////////// cài đặt static file
 const publicPathDir = path.join(__dirname, "./public")
 app.use(express.static(publicPathDir))
 
 
-
+///////////// App listing port
 app.listen(PORT, async () => {
     console.log(`Server khoi tao port ${PORT} http://localhost:${PORT}`)
 })
+
