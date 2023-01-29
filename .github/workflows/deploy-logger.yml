@@ -33,7 +33,8 @@ jobs:
         # Xóa PM2 server
       - run: cd /home/darktuan/Logger/actions-runner/_work/LoggingSerive/LoggingSerive
       - run: sudo pm2 status
-        #      - run: pm2 start server.js
+      - run: sudo pm2 delete logserver
+      - run: pm2 start logserver.js
 
 
 
@@ -42,7 +43,7 @@ jobs:
 
 
 
-        
+
         # npm run start
       #                     echo "login thư mục để chuẩn bị chạy pm2"
       #                      cd /home/darktuan/actions-runner/_work/BE_BookingTickets/BE_BookingTickets
