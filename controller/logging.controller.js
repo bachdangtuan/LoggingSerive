@@ -4,21 +4,23 @@ const {getDB} = require("../setup/connectMongoDB");
 let dbMongo
 
 const getLogging = async (req, res) => {
+    const limit = parseInt(req.query.limit)
+    const page = parseInt(req.query.page)
     dbMongo = getDB()
     // console.log(dbMongo)
     try {
-        const limit = 10;
-        const pageNumber = 1;
         dbMongo.collection('Log').count((error, count) => {
             dbMongo.collection('Log').find()
                 .sort({timestamp: -1})
-                // .skip((pageNumber))
-                // .limit(limit)
+                .skip((page))
+                .limit(limit)
                 .toArray((error, items) => {
-                    console.log(count, items);
                     res.status(STATUS.STATUS_200).send({
+                        message: 'Lấy thành công',
+                        thisPage: page,
+                        limit: limit,
+                        data: items,
                         totalItems: count,
-                        listLog: items
                     })
                 });
         });

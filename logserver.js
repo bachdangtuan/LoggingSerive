@@ -6,10 +6,6 @@ const {connectMongoDB} = require("./setup/connectMongoDB");
 
 const PORT = 5001
 
-// Connected MongoDB
-connectMongoDB().then()
-
-app.use("/api/v1", rootRouter)
 ///////////// Add headers before the routes are defined
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -23,7 +19,10 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+// Connected MongoDB
+connectMongoDB().then()
 
+app.use("/api/v1", rootRouter)
 ///////////// cài đặt kiểu json ép kiểu json
 app.use(express.json());
 
