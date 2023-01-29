@@ -1,15 +1,27 @@
 const STATUS = require("../core/constant/status.contant")
-const {databaseMongo, connectMongoDB} = require("../setup/connectMongoDB");
+const {getDB} = require("../setup/connectMongoDB");
+
+let dbMongo
 
 const getLogging = async (req, res) => {
-    console.log(databaseMongo)
+    dbMongo = getDB()
+    // console.log(dbMongo)
     try {
-
-        // db.collection('<collection>').find().toArray((err, result) => {
-        //     if (err) return console.log(err);
-        //     res.send(result);
-        // });
-
+        const limit = 10;
+        const pageNumber = 1;
+        dbMongo.collection('Log').count((error, count) => {
+            dbMongo.collection('Log').find()
+                .sort({timestamp: -1})
+                // .skip((pageNumber))
+                // .limit(limit)
+                .toArray((error, items) => {
+                    console.log(count, items);
+                    res.status(STATUS.STATUS_200).send({
+                        totalItems: count,
+                        listLog: items
+                    })
+                });
+        });
     } catch (e) {
         res.status(STATUS.STATUS_500)
     }

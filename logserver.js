@@ -2,11 +2,14 @@ const express = require('express');
 const path = require("path");
 const app = express();
 const {rootRouter} = require("./router");
-
+const {connectMongoDB} = require("./setup/connectMongoDB");
 
 const PORT = 5001
-app.use("/api/v1", rootRouter)
 
+// Connected MongoDB
+connectMongoDB().then()
+
+app.use("/api/v1", rootRouter)
 ///////////// Add headers before the routes are defined
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -27,7 +30,6 @@ app.use(express.json());
 ///////////// cài đặt static file
 const publicPathDir = path.join(__dirname, "./public")
 app.use(express.static(publicPathDir))
-
 
 ///////////// App listing port
 app.listen(PORT, async () => {

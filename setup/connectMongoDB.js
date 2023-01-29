@@ -4,8 +4,6 @@ const mongoURI = 'mongodb+srv://dangtuan:ad8EQJDoUQssDhGY@cluster0.ymsq3wi.mongo
 
 
 let databaseMongo;
-
-console.log(1)
 const connectMongoDB = async () => {
     await MongoClient.connect(mongoURI, {useNewUrlParser: true}, (err, client) => {
         if (err) {
@@ -17,10 +15,8 @@ const connectMongoDB = async () => {
         }
     });
 }
-console.log(3)
-
 ///////////// Export Connect Mongo
 module.exports = {
     connectMongoDB,
-    databaseMongo
+    getDB: () => databaseMongo
 };
