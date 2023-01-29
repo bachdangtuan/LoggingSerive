@@ -29,10 +29,20 @@ jobs:
       #        # install pm2 global
       #      - run: npm install pm2@latest -g
       #      - run: pm2 -V #check pm2 version
-      - run: pm2 list #check pm2 list
+      - run: sudo pm2 list #check pm2 list
         # Xóa PM2 server
-#      - run: pm2 delete server
-#      - run: pm2 start server.js
+      - run: cd /home/darktuan/Logger/actions-runner/_work/LoggingSerive/LoggingSerive
+      - run: sudo pm2 status
+        #      - run: pm2 start server.js
+
+
+
+
+
+
+
+
+        
         # npm run start
       #                     echo "login thư mục để chuẩn bị chạy pm2"
       #                      cd /home/darktuan/actions-runner/_work/BE_BookingTickets/BE_BookingTickets
