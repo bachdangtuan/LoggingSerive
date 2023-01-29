@@ -1,0 +1,49 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i
+
+      #        # install pm2 global
+      #      - run: npm install pm2@latest -g
+      #      - run: pm2 -V #check pm2 version
+      - run: pm2 list #check pm2 list
+        # Xóa PM2 server
+#      - run: pm2 delete server
+#      - run: pm2 start server.js
+        # npm run start
+      #                     echo "login thư mục để chuẩn bị chạy pm2"
+      #                      cd /home/darktuan/actions-runner/_work/BE_BookingTickets/BE_BookingTickets
+      #                      pm2 delete server
+      #                      pm2 start server.js
+#            - name: SSH to server GCP
+#              uses: appleboy/ssh-action@master
+#              with:
+#                  host: ${{ secrets.HOST }}
+#                  username: ${{ secrets.USERNAME }}
+#                  password: ${{ secrets.PASSWORD }}
+#                  script: |
+#                      echo "login thư mục để chuẩn bị chạy pm2"
+
