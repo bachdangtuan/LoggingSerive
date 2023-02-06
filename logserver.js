@@ -3,7 +3,6 @@ const path = require("path");
 const app = express();
 const {rootRouter} = require("./router");
 const {connectMongoDB} = require("./setup/connectMongoDB");
-
 const PORT = 5001
 
 ///////////// Add headers before the routes are defined

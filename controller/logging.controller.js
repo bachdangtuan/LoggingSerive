@@ -4,8 +4,8 @@ const {getDB} = require("../setup/connectMongoDB");
 let dbMongo
 
 const getLogging = async (req, res) => {
-    const limit = parseInt(req.query.limit)
-    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit) || 10
+    const page = parseInt(req.query.page) || 1
     dbMongo = getDB()
     // console.log(dbMongo)
     try {
@@ -27,8 +27,6 @@ const getLogging = async (req, res) => {
     } catch (e) {
         res.status(STATUS.STATUS_500)
     }
-
-
 }
 
 module.exports = {
